@@ -1,15 +1,18 @@
 """
 Prompt Service
 
-Responsible for:
-- sending images to AI models
-- generating prompts
-- improving prompts
+Public entry point used by API routes.
 """
+
+from services.prompt_pipeline import PromptPipeline
 
 
 class PromptService:
 
     def generate_prompt(self, image_path: str):
-        # Placeholder implementation.
-        return 'Generated prompt will appear here.'
+
+        pipeline = PromptPipeline()
+
+        result = pipeline.run(image_path)
+
+        return result
