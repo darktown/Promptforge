@@ -1,11 +1,17 @@
+'use client';
+
 // PromptForge Dashboard
-// First MVP interface.
+// First interactive MVP.
 
 import ImageUploader from '../components/ImageUploader';
 import PromptViewer from '../components/PromptViewer';
 import AnalysisViewer from '../components/AnalysisViewer';
+import GenerateButton from '../components/GenerateButton';
+import { usePromptGeneration } from '../hooks/usePromptGeneration';
 
 export default function HomePage() {
+  const { loading, result, generate } = usePromptGeneration();
+
   return (
     <main>
       <h1>PromptForge</h1>
@@ -16,9 +22,14 @@ export default function HomePage() {
 
       <ImageUploader />
 
-      <AnalysisViewer />
+      <GenerateButton
+        loading={loading}
+        onClick={generate}
+      />
 
-      <PromptViewer />
+      <AnalysisViewer analysis={result?.analysis} />
+
+      <PromptViewer prompt={result?.prompt} />
     </main>
   );
 }
