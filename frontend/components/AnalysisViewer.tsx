@@ -1,15 +1,16 @@
 // AnalysisViewer
-// Displays image analysis returned by the backend.
+// Displays backend analysis data.
 
-export default function AnalysisViewer() {
+interface Props {
+  analysis?: any;
+}
+
+export default function AnalysisViewer({ analysis }: Props) {
   return (
     <section>
       <h2>Image Analysis</h2>
       <pre>
-subject: waiting...
-style: waiting...
-lighting: waiting...
-environment: waiting...
+{JSON.stringify(analysis || { status: 'waiting...' }, null, 2)}
       </pre>
     </section>
   );
