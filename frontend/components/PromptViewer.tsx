@@ -1,14 +1,18 @@
 // PromptViewer
-// Displays the generated prompt.
-// Later this will receive real API data.
+// Displays generated prompt data.
 
-export default function PromptViewer() {
+interface Props {
+  prompt?: string;
+}
+
+export default function PromptViewer({ prompt }: Props) {
   return (
     <section>
       <h2>Generated Prompt</h2>
       <textarea
         rows={10}
-        defaultValue='Your generated prompt will appear here.'
+        value={prompt || 'Your generated prompt will appear here.'}
+        readOnly
       />
     </section>
   );
