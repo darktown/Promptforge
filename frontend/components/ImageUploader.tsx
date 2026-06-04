@@ -1,12 +1,24 @@
-// ImageUploader
-// Handles image selection from the user's device.
-// Later this component will upload files to the backend.
+'use client';
 
-export default function ImageUploader() {
+// ImageUploader
+// Emits the selected file to the parent component.
+
+interface Props {
+  onSelect?: (file: File) => void;
+}
+
+export default function ImageUploader({ onSelect }: Props) {
   return (
     <input
-      type="file"
-      accept="image/*"
+      type='file'
+      accept='image/*'
+      onChange={(event) => {
+        const file = event.target.files?.[0];
+
+        if (file && onSelect) {
+          onSelect(file);
+        }
+      }}
     />
   );
 }
