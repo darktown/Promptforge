@@ -1,11 +1,24 @@
 // ImagePreview
-// Displays the selected image before upload.
+// Shows a preview of the selected image.
 
-export default function ImagePreview() {
+interface Props {
+  imageUrl?: string;
+}
+
+export default function ImagePreview({ imageUrl }: Props) {
   return (
     <section>
       <h2>Image Preview</h2>
-      <p>No image selected yet.</p>
+
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt='Preview'
+          style={{ maxWidth: '400px' }}
+        />
+      ) : (
+        <p>No image selected yet.</p>
+      )}
     </section>
   );
 }
